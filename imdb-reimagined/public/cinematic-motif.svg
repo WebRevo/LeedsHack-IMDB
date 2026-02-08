@@ -1,0 +1,80 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <!-- Film strip — top band -->
+  <g opacity="0.12">
+    <rect x="0" y="16" width="800" height="48" rx="2" stroke="#f5c518" stroke-width="0.5" fill="none"/>
+    <line x1="0" y1="16" x2="800" y2="16" stroke="#f5c518" stroke-width="0.5"/>
+    <line x1="0" y1="64" x2="800" y2="64" stroke="#f5c518" stroke-width="0.5"/>
+    <!-- Sprocket holes -->
+    <rect x="20" y="26" width="12" height="18" rx="2" stroke="#f5c518" stroke-width="0.5"/>
+    <rect x="80" y="26" width="12" height="18" rx="2" stroke="#f5c518" stroke-width="0.5"/>
+    <rect x="140" y="26" width="12" height="18" rx="2" stroke="#f5c518" stroke-width="0.5"/>
+    <rect x="200" y="26" width="12" height="18" rx="2" stroke="#f5c518" stroke-width="0.5"/>
+    <rect x="260" y="26" width="12" height="18" rx="2" stroke="#f5c518" stroke-width="0.5"/>
+    <rect x="320" y="26" width="12" height="18" rx="2" stroke="#f5c518" stroke-width="0.5"/>
+    <rect x="380" y="26" width="12" height="18" rx="2" stroke="#f5c518" stroke-width="0.5"/>
+    <rect x="440" y="26" width="12" height="18" rx="2" stroke="#f5c518" stroke-width="0.5"/>
+    <rect x="500" y="26" width="12" height="18" rx="2" stroke="#f5c518" stroke-width="0.5"/>
+    <rect x="560" y="26" width="12" height="18" rx="2" stroke="#f5c518" stroke-width="0.5"/>
+    <rect x="620" y="26" width="12" height="18" rx="2" stroke="#f5c518" stroke-width="0.5"/>
+    <rect x="680" y="26" width="12" height="18" rx="2" stroke="#f5c518" stroke-width="0.5"/>
+    <rect x="740" y="26" width="12" height="18" rx="2" stroke="#f5c518" stroke-width="0.5"/>
+  </g>
+
+  <!-- Film strip — bottom band -->
+  <g opacity="0.08">
+    <rect x="0" y="536" width="800" height="48" rx="2" stroke="#f5c518" stroke-width="0.5" fill="none"/>
+    <rect x="30" y="546" width="12" height="18" rx="2" stroke="#f5c518" stroke-width="0.5"/>
+    <rect x="90" y="546" width="12" height="18" rx="2" stroke="#f5c518" stroke-width="0.5"/>
+    <rect x="150" y="546" width="12" height="18" rx="2" stroke="#f5c518" stroke-width="0.5"/>
+    <rect x="210" y="546" width="12" height="18" rx="2" stroke="#f5c518" stroke-width="0.5"/>
+    <rect x="270" y="546" width="12" height="18" rx="2" stroke="#f5c518" stroke-width="0.5"/>
+    <rect x="330" y="546" width="12" height="18" rx="2" stroke="#f5c518" stroke-width="0.5"/>
+    <rect x="390" y="546" width="12" height="18" rx="2" stroke="#f5c518" stroke-width="0.5"/>
+    <rect x="450" y="546" width="12" height="18" rx="2" stroke="#f5c518" stroke-width="0.5"/>
+    <rect x="510" y="546" width="12" height="18" rx="2" stroke="#f5c518" stroke-width="0.5"/>
+    <rect x="570" y="546" width="12" height="18" rx="2" stroke="#f5c518" stroke-width="0.5"/>
+    <rect x="630" y="546" width="12" height="18" rx="2" stroke="#f5c518" stroke-width="0.5"/>
+    <rect x="690" y="546" width="12" height="18" rx="2" stroke="#f5c518" stroke-width="0.5"/>
+    <rect x="750" y="546" width="12" height="18" rx="2" stroke="#f5c518" stroke-width="0.5"/>
+  </g>
+
+  <!-- Reel arc — top right -->
+  <g opacity="0.06" stroke="#f5c518" fill="none">
+    <circle cx="680" cy="140" r="90" stroke-width="0.75" stroke-dasharray="8 6"/>
+    <circle cx="680" cy="140" r="60" stroke-width="0.5" stroke-dasharray="5 5"/>
+    <circle cx="680" cy="140" r="30" stroke-width="0.5"/>
+    <circle cx="680" cy="140" r="6" fill="#f5c518" fill-opacity="0.15"/>
+    <line x1="680" y1="110" x2="680" y2="170" stroke-width="0.4"/>
+    <line x1="654" y1="125" x2="706" y2="155" stroke-width="0.4"/>
+    <line x1="654" y1="155" x2="706" y2="125" stroke-width="0.4"/>
+  </g>
+
+  <!-- Reel arc — bottom left -->
+  <g opacity="0.05" stroke="#ff6800" fill="none">
+    <circle cx="120" cy="460" r="70" stroke-width="0.75" stroke-dasharray="6 5"/>
+    <circle cx="120" cy="460" r="45" stroke-width="0.5" stroke-dasharray="4 4"/>
+    <circle cx="120" cy="460" r="20" stroke-width="0.5"/>
+    <circle cx="120" cy="460" r="5" fill="#ff6800" fill-opacity="0.12"/>
+    <line x1="120" y1="440" x2="120" y2="480" stroke-width="0.4"/>
+    <line x1="100" y1="448" x2="140" y2="472" stroke-width="0.4"/>
+    <line x1="100" y1="472" x2="140" y2="448" stroke-width="0.4"/>
+  </g>
+
+  <!-- Dot grid — center area -->
+  <g opacity="0.04" fill="#969696">
+    <circle cx="200" cy="200" r="1.2"/><circle cx="240" cy="200" r="1.2"/><circle cx="280" cy="200" r="1.2"/><circle cx="320" cy="200" r="1.2"/><circle cx="360" cy="200" r="1.2"/><circle cx="400" cy="200" r="1.2"/><circle cx="440" cy="200" r="1.2"/><circle cx="480" cy="200" r="1.2"/><circle cx="520" cy="200" r="1.2"/><circle cx="560" cy="200" r="1.2"/><circle cx="600" cy="200" r="1.2"/>
+    <circle cx="200" cy="240" r="1.2"/><circle cx="240" cy="240" r="1.2"/><circle cx="280" cy="240" r="1.2"/><circle cx="320" cy="240" r="1.2"/><circle cx="360" cy="240" r="1.2"/><circle cx="400" cy="240" r="1.2"/><circle cx="440" cy="240" r="1.2"/><circle cx="480" cy="240" r="1.2"/><circle cx="520" cy="240" r="1.2"/><circle cx="560" cy="240" r="1.2"/><circle cx="600" cy="240" r="1.2"/>
+    <circle cx="200" cy="280" r="1.2"/><circle cx="240" cy="280" r="1.2"/><circle cx="280" cy="280" r="1.2"/><circle cx="320" cy="280" r="1.2"/><circle cx="360" cy="280" r="1.2"/><circle cx="400" cy="280" r="1.2"/><circle cx="440" cy="280" r="1.2"/><circle cx="480" cy="280" r="1.2"/><circle cx="520" cy="280" r="1.2"/><circle cx="560" cy="280" r="1.2"/><circle cx="600" cy="280" r="1.2"/>
+    <circle cx="200" cy="320" r="1.2"/><circle cx="240" cy="320" r="1.2"/><circle cx="280" cy="320" r="1.2"/><circle cx="320" cy="320" r="1.2"/><circle cx="360" cy="320" r="1.2"/><circle cx="400" cy="320" r="1.2"/><circle cx="440" cy="320" r="1.2"/><circle cx="480" cy="320" r="1.2"/><circle cx="520" cy="320" r="1.2"/><circle cx="560" cy="320" r="1.2"/><circle cx="600" cy="320" r="1.2"/>
+    <circle cx="200" cy="360" r="1.2"/><circle cx="240" cy="360" r="1.2"/><circle cx="280" cy="360" r="1.2"/><circle cx="320" cy="360" r="1.2"/><circle cx="360" cy="360" r="1.2"/><circle cx="400" cy="360" r="1.2"/><circle cx="440" cy="360" r="1.2"/><circle cx="480" cy="360" r="1.2"/><circle cx="520" cy="360" r="1.2"/><circle cx="560" cy="360" r="1.2"/><circle cx="600" cy="360" r="1.2"/>
+    <circle cx="200" cy="400" r="1.2"/><circle cx="240" cy="400" r="1.2"/><circle cx="280" cy="400" r="1.2"/><circle cx="320" cy="400" r="1.2"/><circle cx="360" cy="400" r="1.2"/><circle cx="400" cy="400" r="1.2"/><circle cx="440" cy="400" r="1.2"/><circle cx="480" cy="400" r="1.2"/><circle cx="520" cy="400" r="1.2"/><circle cx="560" cy="400" r="1.2"/><circle cx="600" cy="400" r="1.2"/>
+  </g>
+
+  <!-- Subtle diagonal cross-hatch lines -->
+  <g opacity="0.025" stroke="#f5c518" stroke-width="0.3">
+    <line x1="350" y1="100" x2="500" y2="250"/>
+    <line x1="400" y1="100" x2="550" y2="250"/>
+    <line x1="300" y1="350" x2="450" y2="500"/>
+    <line x1="350" y1="350" x2="500" y2="500"/>
+  </g>
+</svg>

@@ -65,9 +65,10 @@ function CasualEasterEgg() {
 
 interface Props {
   onConfidenceChange: (percent: number, label: string) => void;
+  onActivate?: () => void;
 }
 
-export default function HeroDemoTyper({ onConfidenceChange }: Props) {
+export default function HeroDemoTyper({ onConfidenceChange, onActivate }: Props) {
   const [mode, setMode] = useState<"demo" | "user">("demo");
   const [scenarioIdx, setScenarioIdx] = useState(0);
   const [charIdx, setCharIdx] = useState(0);
@@ -133,13 +134,17 @@ export default function HeroDemoTyper({ onConfidenceChange }: Props) {
   );
 
   const switchToUser = useCallback(() => {
+    if (onActivate) {
+      onActivate();
+      return;
+    }
     setMode("user");
     setUserText("");
     setUserChips([]);
     setIsCasual(false);
     onConfidenceChange(0, "");
     requestAnimationFrame(() => inputRef.current?.focus());
-  }, [onConfidenceChange]);
+  }, [onConfidenceChange, onActivate]);
 
   const switchToDemo = useCallback(() => {
     setMode("demo");

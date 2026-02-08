@@ -154,16 +154,47 @@ export default function HelpPanel({ currentStep }: HelpPanelProps) {
         AI Help
       </button>
 
+      {/* Backdrop overlay — mobile only, closes panel on tap */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.15 }}
+            className="fixed inset-0 z-40 bg-black/20 backdrop-blur-[2px] sm:hidden"
+            onClick={() => setOpen(false)}
+          />
+        )}
+      </AnimatePresence>
+
       {/* Dropdown panel */}
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ opacity: 0, y: -8, scale: 0.95 }}
+            initial={{ opacity: 0, y: 8, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -8, scale: 0.95 }}
+            exit={{ opacity: 0, y: 8, scale: 0.95 }}
             transition={{ duration: 0.15 }}
-            className="absolute right-0 top-9 z-30 w-[calc(100vw-3rem)] max-w-80 rounded-xl border border-imdb-black/[0.08] bg-white p-3 shadow-xl sm:w-80 sm:p-4"
+            className="fixed inset-x-3 bottom-3 z-50 max-h-[70vh] overflow-y-auto rounded-2xl border border-imdb-black/[0.08] bg-white p-4 shadow-2xl sm:absolute sm:inset-auto sm:bottom-auto sm:right-0 sm:top-9 sm:w-80 sm:max-h-[400px] sm:rounded-xl sm:p-4 sm:shadow-xl"
           >
+            {/* Mobile header */}
+            <div className="mb-3 flex items-center justify-between sm:hidden">
+              <span className="font-display text-xs font-bold uppercase tracking-widest text-imdb-gold">
+                AI Help
+              </span>
+              <button
+                type="button"
+                onClick={() => setOpen(false)}
+                className="flex h-7 w-7 items-center justify-center rounded-lg border border-imdb-black/[0.06] text-imdb-gray"
+              >
+                <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              </button>
+            </div>
+
             {/* Input row */}
             <div className="flex gap-2">
               <input

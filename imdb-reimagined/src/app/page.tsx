@@ -1,15 +1,15 @@
 "use client";
 
 import { useState, useCallback, useRef } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import PageTransition from "@/components/PageTransition";
 import CinematicShell from "@/components/cinema/CinematicShell";
 import HeroDemoTyper from "@/components/landing/HeroDemoTyper";
 import ConfidenceMeter from "@/components/landing/ConfidenceMeter";
 import RotatingMicrocopy from "@/components/landing/RotatingMicrocopy";
 import RejectionReveal from "@/components/landing/RejectionReveal";
-import VoicePreviewOverlay from "@/components/landing/VoicePreviewOverlay";
 import StepPreviewBand from "@/components/landing/StepPreviewBand";
 
 /* ── Animation variants ─────────────────────────────────── */
@@ -25,10 +25,37 @@ const ctaVariants = {
 
 /* ── Page ──────────────────────────────────────────────── */
 
+/* ── Speech wave bars ─────────────────────────────────── */
+
+function SpeechWaveBars() {
+  return (
+    <div className="flex items-center gap-[3px]">
+      {Array.from({ length: 20 }).map((_, i) => (
+        <motion.div
+          key={i}
+          className="w-[3px] rounded-full bg-imdb-gold"
+          animate={{
+            height: [6, 18 + Math.random() * 14, 6],
+          }}
+          transition={{
+            duration: 0.5 + Math.random() * 0.3,
+            repeat: Infinity,
+            delay: i * 0.03,
+            ease: "easeInOut" as const,
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
+/* ── Page ──────────────────────────────────────────────── */
+
 export default function Home() {
   const [confidence, setConfidence] = useState({ percent: 0, label: "" });
-  const [voiceOpen, setVoiceOpen] = useState(false);
+  const [voiceWave, setVoiceWave] = useState(false);
   const heroRef = useRef<HTMLElement>(null);
+  const router = useRouter();
 
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -222,7 +249,7 @@ export default function Home() {
                 },
               }}
             >
-              <HeroDemoTyper onConfidenceChange={handleConfidence} />
+              <HeroDemoTyper onConfidenceChange={handleConfidence} onActivate={() => router.push("/new-title")} />
 
               <div className="flex justify-center md:justify-end">
                 <ConfidenceMeter
@@ -266,26 +293,51 @@ export default function Home() {
                 whileTap="tap"
               >
                 <button
-                  onClick={() => setVoiceOpen(true)}
-                  className="btn-gold group relative overflow-hidden"
+                  onClick={() => {
+                    if (voiceWave) return;
+                    setVoiceWave(true);
+                    setTimeout(() => router.push("/new-title"), 1500);
+                  }}
+                  disabled={voiceWave}
+                  className="btn-gold group relative overflow-hidden disabled:cursor-default"
                 >
-                  <span className="relative z-10 flex items-center gap-2">
-                    <svg
-                      className="h-4 w-4 transition-transform group-hover:scale-110"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
-                      <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
-                      <line x1="12" y1="19" x2="12" y2="23" />
-                      <line x1="8" y1="23" x2="16" y2="23" />
-                    </svg>
-                    Talk it out
-                  </span>
+                  <AnimatePresence mode="wait">
+                    {voiceWave ? (
+                      <motion.span
+                        key="wave"
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="relative z-10 flex items-center gap-2"
+                      >
+                        <SpeechWaveBars />
+                        <span className="ml-1 font-display text-[10px] uppercase tracking-widest">Listening...</span>
+                      </motion.span>
+                    ) : (
+                      <motion.span
+                        key="label"
+                        initial={{ opacity: 1 }}
+                        exit={{ opacity: 0, scale: 0.9 }}
+                        className="relative z-10 flex items-center gap-2"
+                      >
+                        <svg
+                          className="h-4 w-4 transition-transform group-hover:scale-110"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
+                          <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+                          <line x1="12" y1="19" x2="12" y2="23" />
+                          <line x1="8" y1="23" x2="16" y2="23" />
+                        </svg>
+                        Talk it out
+                      </motion.span>
+                    )}
+                  </AnimatePresence>
                   {/* Hover sheen */}
                   <motion.span
                     className="absolute inset-0 bg-white/10"
@@ -304,7 +356,7 @@ export default function Home() {
                 whileTap="tap"
               >
                 <Link
-                  href="/new-title?mode=type"
+                  href="/new-title"
                   className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-xl border border-imdb-gold/30 bg-white/50 px-6 py-3 font-display text-sm font-bold uppercase tracking-wider text-imdb-gold backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-imdb-gold hover:bg-imdb-gold/5 hover:shadow-[0_4px_20px_rgba(245,197,24,0.15)] active:translate-y-0"
                 >
                   <svg
@@ -406,11 +458,6 @@ export default function Home() {
           </motion.div>
         </section>
 
-        {/* ── Voice preview overlay ──────────────────── */}
-        <VoicePreviewOverlay
-          open={voiceOpen}
-          onClose={() => setVoiceOpen(false)}
-        />
       </CinematicShell>
     </PageTransition>
   );

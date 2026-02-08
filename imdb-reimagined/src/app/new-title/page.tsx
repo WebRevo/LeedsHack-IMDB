@@ -19,7 +19,6 @@ import {
 import { useWizardStore } from "@/store/wizardStore";
 import { useStepValidation } from "@/hooks/useStepValidation";
 import GlobalVoiceBar from "@/components/wizard/GlobalVoiceBar";
-import Character from "@/components/Character";
 import { useAssistantGuidance } from "@/hooks/useAssistantGuidance";
 import { useSupabaseDraft } from "@/hooks/useSupabaseDraft";
 import type { SaveStatus } from "@/hooks/useSupabaseDraft";
@@ -124,8 +123,6 @@ export default function NewTitlePage() {
   const [step, setStep] = useState(0);
   const [direction, setDirection] = useState(0);
   const [loading, setLoading] = useState(false);
-  const [characterMode, setCharacterMode] = useState(false);
-
   const store = useWizardStore();
   const { fillMockData, resetForm } = store;
   const guidance = useAssistantGuidance();
@@ -261,46 +258,24 @@ export default function NewTitlePage() {
                 {/* Global voice bar */}
                 <GlobalVoiceBar />
 
-                {/* Character mode toggle */}
-                <div
-                  className="flex cursor-pointer items-center gap-2"
-                  onClick={() => setCharacterMode((p) => !p)}
-                  role="switch"
-                  aria-checked={characterMode}
-                >
-                  <span className="font-display text-[10px] uppercase tracking-widest text-imdb-gray/60">
-                    Character
-                  </span>
-                  <div className="relative">
-                    <div className={`h-5 w-9 rounded-full transition-colors ${characterMode ? "bg-imdb-gold" : "bg-imdb-black/[0.08]"}`} />
-                    <motion.div
-                      className="absolute left-0.5 top-0.5 h-4 w-4 rounded-full bg-white shadow-sm"
-                      animate={{ x: characterMode ? 16 : 0 }}
-                      transition={{ type: "spring" as const, stiffness: 500, damping: 30 }}
-                    />
-                  </div>
+                {/* Form utility controls */}
+                <div className="flex gap-1.5 sm:gap-2">
+                  <button
+                    onClick={fillMockData}
+                    className="rounded-lg border border-emerald-500/20 bg-emerald-500/[0.07] px-2 py-1 font-display text-[9px] uppercase tracking-widest text-emerald-500 transition-colors hover:bg-emerald-500/15 sm:px-2.5 sm:text-[10px]"
+                  >
+                    Fill Mock
+                  </button>
+                  <button
+                    onClick={resetForm}
+                    className="rounded-lg border border-red-500/20 bg-red-500/[0.07] px-2 py-1 font-display text-[9px] uppercase tracking-widest text-red-400 transition-colors hover:bg-red-500/15 sm:px-2.5 sm:text-[10px]"
+                  >
+                    Reset
+                  </button>
+                  {process.env.NODE_ENV === "development" && guidance != null && (
+                    <AssistantDevPanel guidance={guidance} />
+                  )}
                 </div>
-
-                {/* Dev-only controls */}
-                {process.env.NODE_ENV === "development" && (
-                  <div className="flex gap-2">
-                    <button
-                      onClick={fillMockData}
-                      className="rounded-lg border border-emerald-500/20 bg-emerald-500/[0.07] px-2.5 py-1 font-display text-[10px] uppercase tracking-widest text-emerald-500 transition-colors hover:bg-emerald-500/15"
-                    >
-                      Fill Mock
-                    </button>
-                    <button
-                      onClick={resetForm}
-                      className="rounded-lg border border-red-500/20 bg-red-500/[0.07] px-2.5 py-1 font-display text-[10px] uppercase tracking-widest text-red-400 transition-colors hover:bg-red-500/15"
-                    >
-                      Reset
-                    </button>
-                    {guidance != null && (
-                      <AssistantDevPanel guidance={guidance} />
-                    )}
-                  </div>
-                )}
               </div>
             </div>
 
@@ -432,8 +407,6 @@ export default function NewTitlePage() {
         }
       />
     </PageTransition>
-    <Character enabled={characterMode} currentStep={step} />
-
     {/* Save toast */}
     <AnimatePresence>
       {saveToast && (

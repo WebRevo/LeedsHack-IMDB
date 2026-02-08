@@ -3,9 +3,6 @@ import { Oswald, Inter_Tight } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import SplashLoader from "@/components/SplashLoader";
-import CharacterLauncher from "@/components/chatbot/character/CharacterLauncher";
-
-
 const oswald = Oswald({
   subsets: ["latin"],
   variable: "--font-oswald",
@@ -34,7 +31,6 @@ export default function RootLayout({
         <SplashLoader />
         <Navbar />
         <main className="pt-16">{children}</main>
-        <CharacterLauncher />
       </body>
     </html>
   );
